@@ -1,0 +1,30 @@
+body {
+    font-family: "Montserrat", "Roboto Condensed", sans-serif;
+}
+
+.page-tab {
+}
+
+.page-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: solid 1px black;
+}
+
+.page-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    border: solid 1px black;
+}
+
+.page-nav-button {
+}
+
+.page-content-container {
+    border: solid 1px black;
+}
