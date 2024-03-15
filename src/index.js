@@ -1,6 +1,5 @@
 import "./styles.css";
 
-/* const contentContainer = document.getElementById("content"); */
 const documentBody = document.querySelector("body");
 const tempNameList = ["Home", "Menu", "About"];
 const tempTextContentList = [
@@ -10,88 +9,70 @@ const tempTextContentList = [
 ];
 
 generatePage(tempNameList, tempTextContentList);
-console.log("shamalama!");
 
-function generatePage(tabNameList, textContentList) {
-    const pageButtonElements = generateNavButtons(tabNameList);
-
-    const pageContentElement = document.createElement("div");
-    pageContentElement.setAttribute("class", "page-content-container");
+function generatePage(tabNames, textContentList) {
+    const pageButtonList = createNavBar(tabNames);
+    const contentContainer = document.createElement("div");
+    contentContainer.setAttribute("class", "content-container");
     generatePageTabs(
-        tabNameList,
+        tabNames,
         textContentList,
-        pageButtonElements,
-        pageContentElement
+        pageButtonList,
+        contentContainer
     );
-
-    documentBody.appendChild(pageContentElement);
+    documentBody.appendChild(contentContainer);
 }
 
-//Generate nav bar and unlinked buttons
-//Returns a list of button elements now attached to the document body within the nav bar
-function generateNavButtons(pageTabNameList) {
-    const pageHeader = document.createElement("header");
-    const pageNavBar = document.createElement("nav");
-    pageHeader.setAttribute("class", "page-header");
-    pageNavBar.setAttribute("class", "page-nav-bar");
+function createNavBar(tabNames) {
+    const newHeader = document.createElement("header");
+    const newNavBar = document.createElement("nav");
+    newHeader.setAttribute("class", "page-header");
+    newNavBar.setAttribute("class", "page-nav-bar");
 
+    const buttonList = createNavButtons(tabNames, newNavBar);
+
+    newHeader.appendChild(newNavBar);
+    documentBody.appendChild(newHeader);
+
+    return buttonList;
+}
+
+function createNavButtons(tabNames, navBar) {
     const navButtonReturnList = [];
 
-    for (let i = 0; i < pageTabNameList.length; i++) {
+    for (let i = 0; i < tabNames.length; i++) {
         const newTabButton = document.createElement("button");
-        newTabButton.setAttribute("class", "page-nav-button");
-        newTabButton.textContent = `${pageTabNameList[i]} blamo!`;
-        pageNavBar.appendChild(newTabButton);
+        newTabButton.setAttribute("class", "nav-button");
+        newTabButton.textContent = `${tabNames[i]}`;
+        navBar.appendChild(newTabButton);
         navButtonReturnList.push(newTabButton);
-        console.log(`shamalama! ${newTabButton.classList}`);
-        console.log("shamalama!");
     }
-
-    pageHeader.appendChild(pageNavBar);
-    //TOD: Do I have to generate the page header separately?
-    documentBody.appendChild(pageHeader);
-
     return navButtonReturnList;
 }
 
 function generatePageTabs(
-    pageTabNameList,
-    pageTextContentList,
-    pageButtonElementList,
-    pageContentContainer
+    tabNameList,
+    textContentList,
+    buttonList,
+    contentContainer
 ) {
     const pageTabElements = [];
 
-    for (let i = 0; i < pageTabNameList.length; i++) {
-        const newPageTab = createPageTab(
-            pageTabNameList[i],
-            pageTextContentList[i]
-        );
-
-        stapleTabToFunction(pageButtonElementList[i], newPageTab);
-        pageContentContainer.appendChild(newPageTab);
+    for (let i = 0; i < tabNameList.length; i++) {
+        const newPageTab = createPageTab(tabNameList[i], textContentList[i]);
+        stapleTabToFunction(buttonList[i], newPageTab, contentContainer);
         pageTabElements.push(newPageTab);
     }
 
     return pageTabElements;
 }
 
-function createPageTab(pageHeaderName, pageTextContent) {
+function createPageTab(headerName, textContent) {
     const thisPage = document.createElement("div");
-    thisPage.setAttribute("class", `page-tab`);
+    thisPage.setAttribute("class", "content-tab");
 
-    const pageHeader = createPageElement(
-        "page-header",
-        "div",
-        pageHeaderName,
-        thisPage
-    );
-    const pageContent = createPageElement(
-        "page-content",
-        "div",
-        pageTextContent,
-        thisPage
-    );
+    createPageElement("content-header", "div", headerName, thisPage);
+    createPageElement("content-body", "div", textContent, thisPage);
 
     return thisPage;
 }
@@ -99,27 +80,31 @@ function createPageTab(pageHeaderName, pageTextContent) {
 function createPageElement(
     elementClass,
     elementType,
-    elementTextContent,
-    elementParent
+    textContent,
+    parentElement
 ) {
     const newElement = document.createElement(elementType);
     newElement.setAttribute("class", elementClass);
 
-    newElement.textContent = elementTextContent;
-    elementParent.appendChild(newElement);
+    newElement.textContent = textContent;
+    parentElement.appendChild(newElement);
 
     return newElement;
 }
 
-function stapleTabToFunction(tabButtonElement, displayElement) {
-    const thisButton = tabButtonElement;
-
-    thisButton.addEventListener("click", (e) => {
-        tabButtonFunction(displayElement);
+function stapleTabToFunction(buttonElement, displayElement, contentContainer) {
+    buttonElement.addEventListener("click", (e) => {
+        tabButtonFunction(displayElement, contentContainer);
     });
 }
 
-function tabButtonFunction(displayElement) {
-    //TODO: I suppose hide all other display elements in favor of the one input to this function
-    //Toggle visibility?
+function tabButtonFunction(displayElement, contentContainer) {
+    clearContentArea(contentContainer);
+    contentContainer.appendChild(displayElement);
+}
+
+function clearContentArea(contentContainer) {
+    while (contentContainer.firstChild) {
+        contentContainer.removeChild(contentContainer.lastChild);
+    }
 }

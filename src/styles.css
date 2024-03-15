@@ -1,12 +1,18 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap")
 body {
-    font-family: "Montserrat", "Roboto Condensed", sans-serif;
-}
+    display: grid;
+    grid-template-columns: 1fr 6fr 1fr;
+    grid-template-rows: 1fr 6fr;
+    margin: 0px;
+    height: 100vh;
 
-.page-tab {
+    font-family: "Montserrat", "Roboto Condensed", sans-serif;
+    background-color: rgb(255, 127, 80, 0.1);
 }
 
 .page-header {
+    grid-column: 1 / 4;
+    grid-row: 1 / 2;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,14 +24,29 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 40px;
 
     border: solid 1px black;
 }
 
-.page-nav-button {
+.nav-button {
 }
 
-.page-content-container {
+.content-container {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+
     border: solid 1px black;
+}
+
+.content-tab {
+}
+
+.content-header {
+}
+
+.content-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
