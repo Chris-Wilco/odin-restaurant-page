@@ -11,16 +11,22 @@ const tempTextContentList = [
 generatePage(tempNameList, tempTextContentList);
 
 function generatePage(tabNames, textContentList) {
+    const majorHeader = document.createElement("header");
+    majorHeader.setAttribute("class", "major-header");
+    majorHeader.textContent = "Title Text!";
+    documentBody.appendChild(majorHeader);
+
     const pageButtonList = createNavBar(tabNames);
     const contentContainer = document.createElement("div");
     contentContainer.setAttribute("class", "content-container");
-    generatePageTabs(
+    const pageTabs = generatePageTabs(
         tabNames,
         textContentList,
         pageButtonList,
         contentContainer
     );
     documentBody.appendChild(contentContainer);
+    tabButtonFunction(pageTabs[0], contentContainer);
 }
 
 function createNavBar(tabNames) {

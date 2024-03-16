@@ -1,52 +1,111 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+
+html {
+    --mute-color: rgb(255, 127, 80, 0.1);
+    --secondary-color: 253, 107, 62;
+    --highlight-color: 147, 252, 217;
+    --dark-shadow-color: 0, 0, 0;
+    --box-shadow-values: 10px 20px 1px;
+    --minor-box-shadow-values: 6px 6px 0.5px;
+    --general-font: "Montserrat", "Roboto Condensed", sans-serif;
+    --title-font: "Roboto Slab", serif;
+    --base-font-color: rgb(0, 0, 0, 0.85);
+    --base-font-size: 2vh;
+    --title-font-size: 4rem;
+    --header-font-size: 2rem;
+    --content-font-size: 1rem;
+    --base-line-height: 1.25;
+    --content-line-height: 2;
+
+    font-size: var(--base-font-size);
+}
+
 body {
     display: grid;
     grid-template-columns: 1fr 6fr 1fr;
-    grid-template-rows: 1fr 6fr;
-    margin: 0px;
+    grid-template-rows: 1fr 1fr 0.5fr 6fr 0.5fr;
+    margin: 0rem;
     height: 100vh;
+    color: var(--base-font-color);
+    font-family: var(--general-font);
+    line-height: var(--base-line-height);
+    background-color: var(--mute-color);
+}
 
-    font-family: "Montserrat", "Roboto Condensed", sans-serif;
-    background-color: rgb(255, 127, 80, 0.1);
+.major-header {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+    font-family: var(--title-font);
+    font-size: var(--title-font-size);
+    font-weight: 100;
 }
 
 .page-header {
     grid-column: 1 / 4;
-    grid-row: 1 / 2;
+    grid-row: 2 / 3;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
-    border: solid 1px black;
+    background-color: rgba(var(--secondary-color));
+    box-shadow: var(--box-shadow-values) rgba(var(--highlight-color), 0.5);
+    height: 4rem;
+    margin: 1rem 0;
 }
 
-.page-nav {
+.page-nav-bar {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 40px;
-
-    border: solid 1px black;
 }
 
 .nav-button {
+    border-radius: 0px;
+    border: none;
+    padding: 0.5rem 1rem;
+    background-color: rgba(var(--highlight-color));
+    box-shadow: var(--minor-box-shadow-values)
+        rgba(var(--dark-shadow-color), 0.7);
 }
 
 .content-container {
     grid-column: 2 / 3;
-    grid-row: 2 / 3;
+    grid-row: 4 / 5;
 
-    border: solid 1px black;
+    background-color: rgba(var(--highlight-color));
+    box-shadow: var(--box-shadow-values) rgba(var(--secondary-color), 0.5);
+    margin: 10px 80px;
 }
 
 .content-tab {
+    display: grid;
+    grid-template-rows: 1fr 6fr;
+
+    margin: 0px 60px;
+    gap: 20px;
+    place-items: center;
 }
 
 .content-header {
+    grid-row: 1 / 2;
+
+    font-family: var(--title-font);
+    font-weight: 300;
+    font-size: var(--header-font-size);
 }
 
 .content-body {
+    grid-row: 2 / 3;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    font-size: var(--content-font-size);
+    line-height: var(--content-line-height);
 }
