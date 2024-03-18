@@ -1,5 +1,6 @@
 import "./styles.css";
 //import createNavBar from "./generatePage.js";
+import createPageTab from "./tabCreatorModule.js";
 
 const documentBody = document.querySelector("body");
 const tempNameList = ["Home", "Menu", "About"];
@@ -74,7 +75,7 @@ function generatePageTabs(
     return pageTabElements;
 }
 
-function createPageTab(headerName, textContent) {
+/* function createPageTab(headerName, textContent) {
     const thisPage = document.createElement("div");
     thisPage.setAttribute("class", "content-tab");
 
@@ -97,7 +98,7 @@ function createPageElement(
     parentElement.appendChild(newElement);
 
     return newElement;
-}
+} */
 
 function stapleTabToFunction(buttonElement, displayElement, contentContainer) {
     buttonElement.addEventListener("click", (e) => {
