@@ -1,4 +1,4 @@
-export default function createNavBar(tabNames) {
+export default function createNavBar(tabNames, documentBody) {
     const newHeader = document.createElement("header");
     const newNavBar = document.createElement("nav");
     newHeader.setAttribute("class", "page-header");
