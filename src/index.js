@@ -1,4 +1,5 @@
 import "./styles.css";
+import createNavBar from "./generatePage.js";
 
 const documentBody = document.querySelector("body");
 const tempNameList = ["Home", "Menu", "About"];
@@ -29,7 +30,7 @@ function generatePage(tabNames, textContentList) {
     tabButtonFunction(pageTabs[0], contentContainer);
 }
 
-function createNavBar(tabNames) {
+/* function createNavBar(tabNames) {
     const newHeader = document.createElement("header");
     const newNavBar = document.createElement("nav");
     newHeader.setAttribute("class", "page-header");
@@ -41,7 +42,7 @@ function createNavBar(tabNames) {
     documentBody.appendChild(newHeader);
 
     return buttonList;
-}
+} */
 
 function createNavButtons(tabNames, navBar) {
     const navButtonReturnList = [];
